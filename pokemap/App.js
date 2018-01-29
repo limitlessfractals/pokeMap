@@ -3,7 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import SignIn from './src/SignIn';
 import Meteor, {createContainer, Accounts} from 'react-native-meteor';
 
+const SERVER_URL = 'ws://localhost:3000/websocket';
+
 export default class App extends React.Component {
+  componentWillMount(){
+    Meteor.connect(SERVER_URL);
+  }
   logIn = (email, password) =>{
     Meteor.loginWithPassword(email, password, (error, data)=>{
       if(error){
@@ -16,8 +21,10 @@ export default class App extends React.Component {
       }
       else{
         console.log('email found');
+        //TODO
       }
     });
+    console.log(Meteor.userId());
   }
   render() {
     return (
