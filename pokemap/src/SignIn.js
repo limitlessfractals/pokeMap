@@ -10,7 +10,10 @@ class SignIn extends React.Component{
       password: ""
    }
    login = () =>{
+      var email = this.state.email;
+      var password = this.state.password;
 
+      this.props.logIn(email, password);
    }
    render(){
       return(
