@@ -5,8 +5,8 @@ import Meteor, {createContainer, Accounts} from 'react-native-meteor';
 
 // run meteor in directory
 // replace localhost with your IP address while phone and computer are on same network
-// ifconfig -> en0 or en1: inet: 172.20.10.5, replace localhost:3000
-const SERVER_URL = 'ws://172.20.10.5/websocket';
+// ifconfig -> en0 or en1: inet: 172.20.10.5, replace localhost
+const SERVER_URL = 'ws://172.20.10.5:3000/websocket';
 
 export default class App extends React.Component {
   state = {
