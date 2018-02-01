@@ -27,6 +27,8 @@ class PokeMap extends React.Component{
       })
    }
    render(){
+      // props passed in from export to Meteor
+      console.log(this.props.pokemon);
       return(
          <View style={{flex: 1}}>
             <Header>
@@ -70,4 +72,11 @@ class PokeMap extends React.Component{
    }
 }
 
-export default PokeMap;
+export default createContainer(params=>{
+   Meteor.subscribe('pokemon');
+
+   return{
+      // always filter things out in the backend
+      pokemon: Meteor.collection('pokemon').find({})
+   };
+}, PokeMap);
