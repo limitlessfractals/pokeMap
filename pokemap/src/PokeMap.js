@@ -10,13 +10,17 @@ const mapStyle = [{"featureType":"administrative.locality","elementType":"all","
 
 class PokeMap extends React.Component{
    state = {
-      region: {
+      location: {
          latitude: 37.788,
          longitude: -122.432,
          latitudeDelta: 0.0922,
          longitudeDelta: 0.0421
       }
-   };
+   }
+   recordEvent = (x) =>{
+      console.log(x);
+      this.setState({location: x});
+   }
    render(){
       return(
          <View style={{flex: 1}}>
@@ -24,7 +28,7 @@ class PokeMap extends React.Component{
                <Left>
                </Left>
                <Body>
-                  <Title>PokeMap</Title>
+                  <Title>PokéMap</Title>
                </Body>
                <Right>
                   <Button transparent>
@@ -36,12 +40,25 @@ class PokeMap extends React.Component{
                style={{flex: 1}}
                provider={'google'}
                customMapStyle={mapStyle}
-               region={
-                  this.state.region
-               }
+               region={this.state.location}
+               onRegionChangeComplete={(x)=>this.recordEvent(x)}
             >
 
             </MapView>
+            <Fab 
+               direction="left" 
+               position="bottomRight"
+               style={{backgroundColor:'green'}}
+            >
+               <Icon name="add" />
+            </Fab>
+            <Fab 
+               direction="right" 
+               position="bottomLeft"
+               style={{backgroundColor:'red'}}
+            >
+               <Icon name="remove" />
+            </Fab>
          </View>        
       )
    }
