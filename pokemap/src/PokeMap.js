@@ -21,6 +21,11 @@ class PokeMap extends React.Component{
       console.log(x);
       this.setState({location: x});
    }
+   addPokemon = () =>{
+      Meteor.call('pokemon.add', this.state.location, (err, res)=>{
+         console.log('add function', err, res);
+      })
+   }
    render(){
       return(
          <View style={{flex: 1}}>
@@ -49,6 +54,7 @@ class PokeMap extends React.Component{
                direction="left" 
                position="bottomRight"
                style={{backgroundColor:'green'}}
+               onPress={this.addPokemon}
             >
                <Icon name="add" />
             </Fab>

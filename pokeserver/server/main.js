@@ -13,6 +13,7 @@ Meteor.methods({
       console.log('user not signed in');
       return;
     }
+    console.log('Adding Pokemon...');
     var range = 0.035;
     // y axis
     var range1 = Math.random() > 0.5 ? range: -range;
