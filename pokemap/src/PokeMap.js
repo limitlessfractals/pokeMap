@@ -26,6 +26,21 @@ class PokeMap extends React.Component{
          console.log('add function', err, res);
       })
    }
+   renderPokemon = () =>{
+      return this.props.pokemon.map(p=>{
+         return(
+            <MapView.Marker
+               coordinate={{latitude: p.latitude, longitude: p.longitude}}
+               key={p._id}
+            >
+               <Image 
+                  source={{uri:"http://172.20.10.5:3000/"+p.image}} 
+                  style={{height:50, width:50}}
+               />
+            </MapView.Marker>
+         )
+      })
+   }
    render(){
       // props passed in from export to Meteor
       console.log(this.props.pokemon);
@@ -50,7 +65,7 @@ class PokeMap extends React.Component{
                region={this.state.location}
                onRegionChangeComplete={(x)=>this.recordEvent(x)}
             >
-
+               {this.renderPokemon()}
             </MapView>
             <Fab 
                direction="left" 
