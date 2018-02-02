@@ -11,7 +11,7 @@ const SERVER_URL = 'ws://172.20.10.5:3000/websocket';
 
 export default class App extends React.Component {
   state = {
-    loggedIn: true
+    loggedIn: false
   }
   componentWillMount(){
     Meteor.connect(SERVER_URL);
@@ -48,10 +48,10 @@ export default class App extends React.Component {
     }
     else{
       return(
-        <PokeMap/>
+        <PokeMap flipLogin={this.flipLogin}/>
       )
     }
-  }
+  } 
   render() {
     return (
       <View style={styles.container}>
